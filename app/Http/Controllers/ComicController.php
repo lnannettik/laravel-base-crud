@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use Illuminate\Support\Str;
 use App\Comic;
 
 class ComicController extends Controller
@@ -15,7 +16,8 @@ class ComicController extends Controller
     public function index()
     {
         //
-        $comics = Comic::all();
+        // $comics = Comic::all();
+        $comics = Comic::orderBy('id', 'desc')->get();
 
         return view('comics.index', compact('comics'));
     }
@@ -27,7 +29,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -38,20 +40,34 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return 'SAVE NEW COMIC IN DB';
+        $data = $request->all();
+        // dump($data);
+
+        //VALIDAZIONE
+
+        //INSERIMENTO NEL DB
+        $new_comic = new Comic();
+        
+        $new_comic->fill($data); //!!!!!!!!!!!!!!!!!  fillable MODEL !!!!!!!!!!!!!!!!!!!!
+
+        $new_comic->save();
+
+        // // redirect verso la pagina di dettaglio (show) - POST - REDIRECT - GET
+        return redirect()->route('comics.show', $new_comic->id);
+
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource.            //-------------------------------------------- SHOW -----------------------------------------------//
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //----> oppure (Comic $comic) senza $comic = Comic::find($id); 
     {
-        //
+        // return'COMIC DETAIL'
         $comic = Comic::find($id);
-        // dump($comic);
 
         if($comic) {
             return view('comics.show', compact('comic'));
