@@ -23,13 +23,17 @@
             {{ $comic->price }}
         </span>
     </div>
-    <div>
-        <img src="{{ $comic->thumb }}" alt="">
+
+    <div class="img-and-txt-container d-flex p-5">
+        <div class="mb-4 col-3">
+            <img src="{{ $comic->thumb }}" alt="">
+        </div>
+
+        <div class="d-flex flex-column">
+            <h2 class="mb-3">Description</h2>
+            <p>{!! $comic->description !!}</p>
+        </div>
     </div>
-
-    <h2>Description</h2>
-    <p>{!! $comic->description !!}</p>
-
     
 
 </section>
