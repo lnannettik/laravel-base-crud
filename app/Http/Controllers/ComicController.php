@@ -13,7 +13,7 @@ class ComicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()                       //---------------------------------------- INDEX -----------------------------------------------//
     {
         //
         // $comics = Comic::all();
@@ -27,7 +27,7 @@ class ComicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()                       //---------------------------------------- CREATE -----------------------------------------------//
     {
         return view('comics.create');
     }
@@ -38,7 +38,7 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)       //---------------------------------------- STORE -----------------------------------------------//
     {
         // return 'SAVE NEW COMIC IN DB';
         $data = $request->all();

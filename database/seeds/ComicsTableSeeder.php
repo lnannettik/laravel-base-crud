@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use App\Comic;
 
 class ComicsTableSeeder extends Seeder
@@ -26,7 +27,7 @@ class ComicsTableSeeder extends Seeder
             $new_comic->sale_date = $comic['sale_date'];
             $new_comic->type = $comic['type'];
             $new_comic->thumb = $comic['thumb'];
-            
+            $new_comic->slug = Str::slug($comic['title'], '-');            
             
             //salviamo
             $new_comic->save();
